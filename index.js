@@ -11,7 +11,7 @@ app.get('/', (_, res) => {
 
 app.get('/api', (_, res) => {
   const currentDate = new Date();
-  res.json({ unix: Date.parse(currentDate), utc: currentDate.toUTCString() });
+  res.json({ unix: currentDate.getTime(), utc: currentDate.toUTCString() });
 });
 
 app.get('/api/:date', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/api/:date', (req, res) => {
   dateObject.toString() === 'Invalid Date'
     ? res.json({ error: 'Invalid Date' })
     : res.json({
-        unix: Date.parse(dateObject),
+        unix: dateObject.getTime(),
         utc: dateObject.toUTCString(),
       });
 });
